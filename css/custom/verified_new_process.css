@@ -1,0 +1,33 @@
+.form_container {
+    padding-top: 10px;
+}
+
+.form_container table {
+    margin: 0 auto;
+}
+
+.form_container table td, .form_container table th {
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.form_container table th {
+    padding: .9em .3em;
+    background: #4390df;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-align: center;
+    color: #FFF;
+}
+
+.form_container table td {
+	padding-top: 10px;
+}
+
+.add {
+    cursor: pointer;
+    padding: 3px 4px 3px 25px;
+    border: 1px solid #ececec;/*#a3c261*/
+}
+
+.del { cursor: pointer; }

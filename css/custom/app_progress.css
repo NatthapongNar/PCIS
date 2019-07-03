@@ -1,0 +1,30 @@
+body { padding: 10px 0 0 0;  }
+
+table.table th, td { text-align: center; }
+.app-state { width: 100%; }
+.app-state div { display: inline; float: left;  }
+.app-stateno {
+    text-align: center;
+    border: 1px solid #FFF;
+    padding: 5px 10px;
+    color: #FFF;
+    margin-left: 15%;
+    cursor: pointer;
+}
+.app-stateno:hover {
+    opacity: 0.9;
+}
+
+
+.state_pending { background-color: #666; }
+.state_success { background-color: #60A917; }
+.state_start { background-color: #1BA1E2; }
+.state_failed { background-color: #b81900; }
+.state_complete { width: 72%; }
+.state_rac { width: 72%; }
+
+#search {
+    margin: 10px 0 10px 0;
+    float: right;
+}
+#pager { text-align: center; }

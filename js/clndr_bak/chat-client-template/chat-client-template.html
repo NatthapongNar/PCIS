@@ -1,0 +1,695 @@
+<div class="chat-client">
+
+    <li class="{{dialogPosition}}" style="list-style: none;">
+
+        <ul class="top-menu m-b-0 m-t-5">
+            <!--<li class="dropdown" ng-click="callservice()">-->
+                <!--<a target="_blank">-->
+                    <!--<img src="{{imgOutLookPath}}" style="height: 25px; width: 33px; margin-bottom: 12px;  margin-top: 4px;">-->
+                <!--</a>-->
+            <!--</li>-->
+            <li class="dropdown" style="max-width: 110px;">
+                <a data-toggle="dropdown" class="tm-message" aria-expanded="false" href="#"><i
+                        class="fa fa-windows chat-client-menu-icon"></i></a>
+
+                <div class="dropdown-menu dropdown-menu-left"
+                     style="position: absolute; background-color: #000; opacity: 0.6; border-color: transparent; width: fit-content; border-radius: 0px; white-space: nowrap; display: inline-block; text-align: left;">
+                    <div class="submenu_hover"
+                         style="padding: 5px; height: 53px; max-width: 50px; display: inline-block;">
+                        <a ng-href="{{uriOutLook}}" target="_blank" style="background: transparent !important;">
+                            <img src="{{imgOutLookPath}}" icon-attr="outlook"
+                                 style="height: 25px; width: 33px; margin-bottom: 4px; margin-top: 8px;">
+                        </a>
+                    </div>
+                    <!-- <span class="element-divider" style="margin: 5px 5px 0 5px;"></span> -->
+                    <div class="submenu_hover"
+                         style="padding: 5px; height: 53px; max-width: 50px; display: inline-block;">
+                        <a ng-href="https://www.yammer.com/tcrbank.com/#/home" target="_blank"
+                           style="background: transparent !important;">
+                            <img icon-attr="yammer" src="http://tc001pcis1p:8099/pcis/img/YammerLogoCroppedSmall.png"
+                                 style="height: 25px; width: 33px; margin-bottom: 5px;  margin-top: 8px;">
+                        </a>
+                    </div>
+                    <div class="submenu_hover"
+                         style="padding: 5px;  height: 53px; max-width: 50px; display: inline-block;">
+                        <a ng-href="https://outlook.office.com/owa/?realm=tcrbank.com&exch=1&path=/people"
+                           target="_blank" style="background: transparent !important;">
+                            <img icon-attr="yammer" src="http://tc001pcis1p:8099/pcis/img/people.png"
+                                 style="height: 30px; width: 33px; margin-bottom: 5px;  margin-top: 8px;">
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown">
+
+                <a ng-href="{{uriCalendar}}" target="_blank">
+                    <span class="fa fa-calendar-o chat-client-menu-icon" ng-class="{'wp-bind':showbutton.btn_calendar}"
+                          date-now="{{nowdate}}"></span>
+                </a>
+
+            </li>
+            <li class="dropdown">
+
+                <a ng-href="{{uriKpi}}" target="_blank">
+                    <span class="fa fa-bar-chart chat-client-menu-icon"
+                          ng-class="{'wp-bind':showbutton.btn_kpi}"></span>
+                </a>
+
+            </li>
+            <li class="dropdown">
+
+                <a data-toggle="dropdown" class="tm-message" aria-expanded="false" href="">
+                    <img src="{{imgChatPath}}" style="height: 30px; width: 35px; margin-bottom: 12px;">
+                    <i class="tmn-counts" ng-show="unReadMessage[0].CountUnreadAllPerson > 0">{{unReadMessage[0].CountUnreadAllPerson}}</i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-lg {{dialogPosition}}">
+
+                    <div class="listview">
+                        <div class="lv-header">
+                            Messages
+                            <ul class="lv-actions actions">
+                                <li style="margin: 0 !important;">
+                                    <a ng-click="openChatDialog('new')"
+                                       style="padding: 5px 0 0 0 !important; background-color: #FFF;" href="">
+                                        <i class="zmdi zmdi-comment-text-alt"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="lv-body c-overflow chat-scrollbar" tabindex="1"
+                             style="overflow-x: hidden; overflow-y: auto; outline: none;">
+                            <a class="lv-item"
+                               disable-animate
+                               ng-click="openChatDialog(message)"
+                               style="style=" line-height: 20px !important;""
+                            ng-repeat="message in unReadMessage | orderBy:'-Chat_Id'" href="">
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="lv-img-sm"
+                                         ng-src="{{message.Chat_Room ? message.Group_Image :message.UserImagePath || ''}}"
+                                         alt="">
+                                </div>
+                                <div class="media-body unread-message">
+                                    <div class="lv-title">{{message.Chat_Room ? message.Group_Name
+                                        :message.FullNameEng}}
+                                    </div>
+                                    <small class="lv-small">{{message.Chat_Message}}</small>
+                                    <i class="user-unread"
+                                       ng-show="message.CountUnreadByPerson > 0">{{message.CountUnreadByPerson}}</i>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+
+                        <a class="lv-footer" href="" ng-click="openChatDialog('view')">View All</a>
+
+                    </div>
+                </div>
+
+            </li>
+            <li class="dropdown">
+
+                <a data-toggle="dropdown" class="tm-message" aria-expanded="false" href="">
+                    <img src="{{imgPath}}" style="height: 30px; width: 35px; margin-bottom: 12px;">
+                    <i class="tmn-counts" ng-show="countUnreadBroadCast > 0">{{countUnreadBroadCast}}</i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-lg {{dialogPosition}}">
+
+                    <div class="listview">
+                        <div class="lv-header">
+                            Broadcast
+                            <ul ng-if="AuthToBroadCast == 1" class="lv-actions actions">
+                                <li style="margin: 0 !important;">
+                                    <a ng-click="openBroadCastDialog('new')"
+                                       style="padding: 5px 0 0 0 !important; background-color: #FFF;" href="">
+                                        <i class="zmdi zmdi-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="lv-body c-overflow chat-scrollbar" tabindex="1"
+                             style="overflow-x: hidden; overflow-y: auto; outline: none;">
+                            <a class=" lv-item"
+                               disable-animate
+                               ng-click="openBroadCastDialog(item)"
+                               style="line-height: 20px !important;"
+                               ng-repeat="item in broadCastHistoryData | orderBy:'-BroadCast_Priority'" href="">
+                                <div style="background-color: {{item.BroadCast_Color}};">
+                                    <div class="media" style="margin-left: 5px; background-color: #FFF;">
+                                        <div class="pull-left">
+                                            <div class="lv-img-sm" style="width: 0;"></div>
+                                        </div>
+                                        <div class="media-body unread-message">
+                                            <div class="lv-title">{{item.BroadCast_Name}}
+                                            </div>
+                                            <small ng-if="message.BroadCastHistory_Id" class="lv-small"
+                                                   ng-repeat="message in item.BroadCastHistory_Data | orderBy:'-_BroadCastHistory_Date' | limitTo:1">
+                                                {{message.BroadCastHistory_Message}}
+                                            </small>
+                                            <i class="user-unread" ng-show="item.CountUnreadByType > 0">{{item.CountUnreadByType}}</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <a class="lv-footer" href="" ng-click="openBroadCastDialog()">View All</a>
+
+                    </div>
+                </div>
+
+            </li>
+            <li class="dropdown">
+
+                <a data-toggle="dropdown" class="tm-message" aria-expanded="false" href="">
+                    <span class="fa fa-bell chat-client-menu-icon"></span>
+                    <i class="tmn-counts" ng-show="countAllNotification > 0">{{countAllNotification}}</i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-lg {{dialogPosition}}" style="width: 500px;">
+
+                    <div class="listview">
+                        <div class="lv-header">
+                            Notification
+                        </div>
+
+                        <div class="lv-body c-overflow chat-scrollbar notification-height" tabindex="1"
+                             style="overflow-x: hidden; overflow-y: auto; outline: none;">
+                            <div show-sub-menu="search-container_{{$index}}"
+                                 ng-repeat="item in notificationData">
+                                <div class="notification-group-header" style="border-top: 1px solid #D9D9D9;">
+                                    <span>{{item.Category}}</span>
+                                    <span class="pull-right fa fa-chevron-circle-up slide-icon"
+                                          style="padding-left: 5px; padding-top: 2px;"></span>
+                                    <span style="float: right;">{{item.CountByCategory}}</span>
+                                </div>
+                                <div id="search-container_{{$index}}"
+                                     style="transition: .4s; opacity: 1; display: block;">
+                                    <a class=" lv-item"
+                                       ng-repeat="itemData in item.Data"
+                                       style="padding: 5px 10px !important; line-height: 20px !important;"
+                                       href="">
+                                        <div style="background-color: {{itemData.Color || '#FFFFFF'}}; border: 1px solid #DEDEDE; border-radius: 3px;">
+                                            <div class="media" style="margin-left: 5px; background-color: #FFF;">
+                                                <div class="pull-left" style="padding-right: 7px;">
+                                                    <div class="lv-img-sm" style="width: 0;"></div>
+                                                </div>
+                                                <div class="media-body unread-message">
+                                                    <span ng-show="itemData.Color.indexOf('No-contact') > -1 "
+                                                          ng-click="updateNoContactPerson($event,itemData);"
+                                                          class="fa fa-check"
+                                                          style="position: absolute;right: 15px;top: 10px; font-size: 20px;">
+                                                    </span>
+
+                                                    <div class="lv-title full-width">{{itemData.Header}}
+                                                    </div>
+                                                    <small class="lv-small full-width">
+                                                        <span compile-html="itemData.Detail"></span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<a class="lv-footer" href="" ng-click="openBroadCastDialog()">View All</a>-->
+
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+
+    </li>
+
+    <script type="text/ng-template" id="modalChat.html">
+
+        <div class="card m-b-0 chat-modal" id="messages-main">
+
+            <div class="ms-menu" ng-show="!isMaximize">
+
+                <div class="listview lv-message">
+                    <div class="lv-header-alt bgm-white">
+                        <div class="lvh-label hidden-xs">
+                            <div class="lv-avatar pull-left">
+                            </div>
+                        </div>
+                        <ul class="lv-actions actions">
+                            <li>
+                                <a href="" style="padding-top: 5px;" ng-click="newChat()">
+                                    <i class="zmdi zmdi-accounts-add"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="listview lv-user chat-scrollbar">
+                    <div class="lv-item media"
+                         ng-repeat="item in chatuserslist | orderBy:'-LastMessageTime' track by $index"
+                         ng-class="{'bgm-lime active': item.isSelected}"
+                         ng-click="select(item)" style="width: 100%;">
+                        <div class="pull-left p-relative">
+                            <img class="lv-img-sm"
+                                 ng-src="{{item.Group_Id ? item.Group_Image : item.UserImagePath || ''}}" alt="">
+                            <i ng-if="!item.Group_Id"
+                               ng-class="item.onlineStatus ? 'chat-status-online' : 'chat-status-offline'"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title" style="width: 92%;">
+                                {{item.Group_Id ? item.Group_Name : item.FullNameEng}}
+                            </div>
+                            <div class="lv-small" style="width: 92%;">{{item.LastMessage}}</div>
+                            <i class="user-unread"
+                               ng-if="item.CountUnreadByPerson > 0">{{item.CountUnreadByPerson}}</i>
+
+                            <div ng-if="!item.onlineStatus && !item.Group_Id"
+                                 class="mask-user-offline"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="ms-body" ng-class="{'ms-body-maximize':isMaximize}">
+
+                <div class="listview lv-message">
+
+                    <div class="lv-header-alt bgm-white">
+
+                        <div ng-show="isOpenSearch" disable-animate class="animated flipInX">
+                            <ul class="lv-actions actions actions-left" style="font-size: 12px;">
+                                To <input class="search-my" ng-model="txtSearchUsers" type="text"
+                                          ng-change="txtSearchUsersChange(txtSearchUsers)"
+                                          placeholder="Message to..." focus="isOpenSearch">
+                            </ul>
+                            <ul class="lv-actions actions search-my-clear">
+                                <li>
+                                    <a href="" ng-click="clearSearch(); txtSearchUsers = '';" style="padding-top: 3px;">
+                                        <i class="zmdi zmdi-close"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="!isOpenSearch" disable-animate class="animated flipInX">
+                            <ul class="lv-actions actions actions-left">
+                                <li>
+                                    <a href="" style="padding-top: 5px;" ng-click="isMaximize = !isMaximize;">
+                                        <i class="fa"
+                                           ng-class="!isMaximize ? 'fa-expand' : 'fa-minus'"></i>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="lvh-label hidden-xs">
+                                <div class="lv-avatar pull-left">
+                                    <img ng-src="{{currentChatInformation.Group_Id ? currentChatInformation.Group_Image : currentChatInformation.UserImagePath || ''}}"
+                                         alt="">
+                                </div>
+                                <span ng-if="!currentChatInformation.Group_Id" class="c-black">({{currentChatInformation.ShortPosition}}) {{currentChatInformation.FullNameEng}}</span>
+                                <span ng-if="currentChatInformation.Group_Id  && !rename" class="c-black">{{currentChatInformation.Group_Name}}</span>
+                                <input ng-show="currentChatInformation.Group_Id && rename"
+                                       class="search-my"
+                                       style="width: 300px;"
+                                       maxlength="30"
+                                       ng-model="currentChatInformation.Group_Name">
+                                <ul class="lv-actions actions"
+                                    ng-show="currentChatInformation.Group_Id && rename">
+                                    <li ng-click="changeGroupName()">
+                                        <a href="" style="padding-top: 3px;">
+                                            <i class="fa fa-check" style="color: #0c7cd5;"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <small ng-if="!currentChatInformation.Group_Id">
+                                    [{{currentChatInformation.BranchNameEng}}]
+                                </small>
+                            </div>
+
+                            <ul ng-if="currentChatInformation.Group_Admin == 'True'" class="lv-actions actions">
+                                <li class="dropdown" ng-click="groupRename()">
+                                    <a href="" style="padding-top: 3px;">
+                                        <i class="fa" ng-class="rename ? 'fa-close' : 'fa-text-width'"
+                                           style="color: {{rename ? 'red' : null}};"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="" style="padding-top: 3px;">
+                                        <i class="fa fa-user-plus"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="" style="padding-top: 3px;">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="" style="padding-top: 3px;">
+                                        <i class="fa fa-cogs"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="" style="padding-top: 3px;">
+                                        <i class="fa fa-sign-out"></i>
+                                    </a>
+                                </li>
+                                <!--<li class="dropdown">-->
+                                <!--<a href="" data-toggle="dropdown" aria-expanded="true" style="padding-top: 3px;">-->
+                                <!--<i class="zmdi zmdi-more-vert"></i>-->
+                                <!--</a>-->
+
+                                <!--<ul class="dropdown-menu dropdown-menu-right">-->
+                                <!--<li>-->
+                                <!--<a href="">Refresh</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                <!--<a href="">Message Settings</a>-->
+                                <!--</li>-->
+                                <!--</ul>-->
+                                <!--</li>-->
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div ng-if="isOpenSearch" class="lv-body chat-scrollbar" style="height: 500px; overflow-x: auto;"
+                         scroll-load-more="loadMoreUser" scroll-to="bottom">
+                        <div class="lv-item media"
+                             ng-repeat="user in chatusers | filter:txtSearchUsers | orderBy:['-onlineStatus','OrderByPosition','RegionID'] | limitTo : userlimit track by $index">
+                            <div class="checkbox pull-left">
+                                <label>
+                                    <!--<input type="checkbox" ng-model="newChatUser.checked" ng-true-value="{{user}}">-->
+                                    <!--<input type="checkbox" ng-model="newChatUser.checked[$index]"-->
+                                    <!--ng-true-value="{{user}}">-->
+                                    <input type="checkbox" ng-change="optionToggled(txtSearchUsers)"
+                                           ng-model="user.selected">
+                                    <i class="input-helper"></i>
+                                </label>
+                            </div>
+                            <div class="pull-left p-relative">
+                                <img class="lv-img-sm" ng-src="{{user.UserImagePath || ''}}" alt="">
+                                <i ng-class="user.onlineStatus ? 'chat-status-online' : 'chat-status-offline'"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">({{user.ShortPosition}}) {{user.FullNameEng}}</div>
+                                <small class="lv-small">{{user.BranchNameEng}}</small>
+                            </div>
+                        </div>
+                        <div class="checkbox-all">
+                            <div class="checkbox m-0"
+                                 style="display: inline-block; vertical-align: middle; text-align: center; padding-right: 5px;">
+                                <label style="min-height: 13px;">
+                                    <input type="checkbox" ng-click="toggleAll(txtSearchUsers)"
+                                           ng-model="checkall.value"
+                                           style="margin-top: -6px;">
+                                    <i class="input-helper"></i>
+                                </label>
+                            </div>
+                            <div style="display: inline-block; vertical-align: middle; text-align: center;">
+                                <span>Select All</span>
+                            </div>
+                        </div>
+                        <div class="select-item-count">
+                            <span>select {{newChatUser.checked.length}} items</span>
+                        </div>
+                        <a ng-if="showbtnNewGroup" ng-click="openGroup()"
+                           class="btn bgm-green btn-float waves-effect waves-button ms-compose animated flipInX"
+                           disable-animate>
+                            <i class="zmdi zmdi-accounts-add"></i>
+                        </a>
+                    </div>
+
+                    <div ng-if="!isOpenSearch" class="lv-body" style="height: 500px; overflow-x: auto;">
+
+                        <section
+                                ng-show="room.roomName == (currentChatInformation.Group_Id ? currentChatInformation.Group_Code : currentChatInformation.EmployeeCode)"
+                                ng-repeat="room in chatRoomData track by room.roomName"
+                                style="height: 500px; overflow-x: auto;"
+                                class="chat-scrollbar"
+                                scroll-load-more="loadMoreChatHistory" scroll-to="top">
+                            <div class="lv-item media chat-scrollbar"
+                                 ng-class="item.EmployeeCode == ownuser.EmployeeCode ? 'right' : 'left'"
+                                 ng-repeat="item in room.roomData track by item.Chat_Id"
+                                 on-last-repeat="focusLastChatHistory">
+                                <div class="lv-avatar"
+                                     ng-class="item.EmployeeCode == ownuser.EmployeeCode ? 'pull-right' : 'pull-left'">
+                                    <img ng-src="{{item.UserImagePath || ''}}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <small ng-if="item.EmployeeCode == ownuser.EmployeeCode" class="chat-read-status">
+                                        {{item.Chat_Type == 'G' ? item.Chat_GroupRead > 0 ? "read by " +
+                                        item.Chat_GroupRead : '':item.Chat_Status == "R" ? "read" : ""}}
+                                    </small>
+                                    <div class="ms-item" style="text-align: left;">{{item.Chat_Message}}</div>
+                                    <small class="ms-date">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{formatChatDateTime(item._Chat_DateTime)}}
+                                    </small>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <div ng-show="!showNewGroup" class="lv-footer ms-reply animated zoomIn" disable-animate>
+
+                    <textarea placeholder="What's on your mind..."
+                              style="height: 40px; color: black; font-size: 15px; line-height: 1.05;"
+                              enter-submit="sendMessage(txtMessage); txtMessage='';"
+                              focus="!showNewGroup"
+                              ng-model="txtMessage">
+                    </textarea>
+
+                        <button ng-click="sendMessage(txtMessage); txtMessage='';">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <div ng-show="showNewGroup" class="lv-footer ms-reply animated zoomIn" style="height: 58px;"
+                         disable-animate>
+                        <div class="lv-avatar bgm-orange"
+                             style="line-height: 2.5; position: absolute; left:16px; top: 11px;">
+                            <img ng-src="{{imgGroupChat || ''}}">
+                        </div>
+                        <input class="search-my" style="width: 530px; margin-top: 5px;" ng-model="txtGroupName"
+                               type="text"
+                               focus="showNewGroup"
+                               placeholder="Group Name" maxlength="30">
+                        <button ng-click="newGroup(txtGroupName); txtGroupName = '';"><i
+                                class="zmdi zmdi-plus-square"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="modalBroadCast.html">
+
+        <div class="card m-b-0 chat-modal" id="messages-main">
+
+            <div class="ms-menu" style="padding-bottom: 0;">
+
+                <div class="listview lv-message" style="box-shadow: 0 1px 5px #AFAFAF; margin-bottom: 10px;">
+                    <div class="lv-header-alt bgm-blue" style="padding: 5px; padding: 5px;padding-bottom: 7.3px;">
+                        <div class="lvh-label hidden-xs">
+                            <img src="{{imgPath}}" style="height: 30px; width: 35px;">
+                            <span style="color: white; text-transform: uppercase; padding-left: 10px;">Broadcast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="listview lv-user chat-scrollbar"
+                     style="padding-left: 10px; padding-right: 1px; height: 100%;">
+                    <div class="lv-item media bgm-white broadcast-item"
+                         ng-repeat="item in broadCastHistoryData | orderBy:'-BroadCast_Priority'"
+                         ng-click="broadCastSelect(item)"
+                         ng-class="{'broadcast-item-active' : item.selected}"
+                         style="border-left: 7px solid {{item.BroadCast_Color}};  height:45px;">
+                        <div class="pull-left p-relative">
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title" style="width: 92%; color: #6C6B6B;">
+                                {{item.BroadCast_Name}}
+                            </div>
+                            <i class="user-unread" style="padding: 0px 5px; background-color: lightsalmon; top: 15px;"
+                               ng-if="item.CountUnreadByType > 0">{{item.CountUnreadByType}}</i>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="ms-body">
+
+                <div class="listview lv-message">
+
+                    <div class="lv-header-alt bgm-white chat-client p-0"
+                         style="text-align: center; box-shadow: 0 1px 5px #AFAFAF; border:none;">
+
+                        <div class="lvh-label hidden-xs"
+                             style="width: 100%; height: 45px; background-color: {{broadCastSelectItem.BroadCast_Color}}; text-align: left; padding-top: 7px; transition: .4s ease-in-out;">
+                            <i class="fa fa-feed c-white m-r-5"
+                               style="transform: rotate(270deg);font-size: 18px;">
+                            </i>
+                            <span class="c-white" style="font-weight: 700; font-size: 15px;">{{broadCastSelectItem.BroadCast_Name}}</span>
+
+                            <ul ng-if="AuthToBroadCast == 1" class="lv-actions actions">
+                                <li class="dropdown" ng-click="openBroadCast()">
+                                    <a href="" style="padding-top: 3px;">
+                                        <i class="fa" ng-class="hasBroadCast ? 'fa-chevron-up' : 'fa-chevron-down'"
+                                           style="color: #FFF;"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <section ng-show="hasBroadCast" class="broadcast-multiselect-container"
+                                 style="margin: 5px 0; transition: .2s ease;">
+
+                            <div style="width: 80px;" ng-if="false">
+                                <div class="checkbox m-0"
+                                     style="display: inline-block; vertical-align: middle; text-align: center; padding-right: 5px;">
+                                    <label style="min-height: 13px;">
+                                        <input type="checkbox" ng-click="toggleAll(txtSearchUsers)"
+                                               ng-model="checkall.value"
+                                               style="margin-top: -6px;">
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div style="display: inline-block; vertical-align: middle; text-align: center;">
+                                    <span>All User</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <select ng-multiselect
+                                        name="objMasterPosition"
+                                        ng-model="selectModel.positionSelectedData"
+                                        multiselect-config="selectOptions"
+                                        multiselect-data="masterPosition"
+                                        multiselect-button-text="Position"
+                                        multiselect-enable-filter="false"
+                                        multiselect-default-value="defaultPositionValue"
+                                        ng-options="item.PositionRef as item.PositionDetail for item in masterPosition | orderBy: 'PositionSort'"
+                                        multiple="multiple">
+                                </select>
+                            </div>
+
+                            <div ng-if="ownuser.RegionID == '01 '">
+                                <select ng-multiselect
+                                        name="objMasterRegion"
+                                        ng-model="selectModel.regionSelectedData"
+                                        multiselect-config="selectOptions"
+                                        multiselect-data="masterRegion"
+                                        multiselect-button-text="Region"
+                                        multiselect-enable-filter="false"
+                                        ng-options="item.RegionID as item.RegionCode for item in masterRegion | trim : 'RegionID'"
+                                        multiple="multiple">
+                                </select>
+                            </div>
+
+                            <div class="multiselect-emp">
+                                <select ng-multiselect
+                                        name="objMasterBranch"
+                                        ng-model="selectModel.branchSelectedData"
+                                        multiselect-config="selectOptions"
+                                        multiselect-data="masterBranch"
+                                        multiselect-button-text="Branch"
+                                        multiselect-enable-filter="true"
+                                        ng-options="item.BranchCode as item.BranchName for item in masterBranch"
+                                        multiple="multiple">
+                                </select>
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                    <div class="lv-body" style="height: 500px; overflow-x: auto; transition: .4s ease;"
+                         ng-class="{'has-broadcast' : !hasBroadCast}">
+
+                        <section
+                                ng-show="item.selected"
+                                ng-repeat="item in broadCastHistoryData | orderBy:['-BroadCast_Priority']"
+                                style="height: 500px; overflow-x: auto;"
+                                class="chat-scrollbar"
+                                ng-class="{'has-broadcast' : !hasBroadCast}"
+                                scroll-load-more="loadMoreChatHistory" scroll-to="top">
+                            <div class="lv-item media chat-scrollbar left"
+                                 ng-if="item.BroadCastHistory_Data[0].BroadCastHistory_Message != ''"
+                                 on-last-repeat="focusLastChatHistory"
+                                 ng-repeat="data in item.BroadCastHistory_Data | orderBy:['_BroadCastHistory_Date'] track by data.BroadCastHistory_Id">
+                                <div class="media-body">
+                                    <div class="ms-item"
+                                         compile-html="data.BroadCastHistory_Message"
+                                         style="background-color: {{data.BroadCastHistory_Status == 'R' ? item.BroadCast_Color : '#E34103'}}; max-width: 90%;">
+                                        <!--{{data.BroadCastHistory_Message}}-->
+                                    </div>
+                                    <small ng-if="data.BroadCastHistory_Status == 'U'" class="chat-read-status"
+                                           ng-click="updateBroadCastItem(data)"
+                                           style="color: #03A9F4; font-size: 25px; cursor: pointer; display: inline-block;">
+                                        <span class="fa fa-check" style="vertical-align: bottom;"></span>
+                                    </small>
+                                    <small class="ms-date">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{formatChatDateTime(data._BroadCastHistory_Date)}} By
+                                        {{data.BroadCastHistory_By}}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="lv-item media chat-scrollbar center"
+                                 ng-if="item.BroadCastHistory_Data[0].BroadCastHistory_Message == ''">
+                                <div class="media-body">
+                                    <div class="ms-item"
+                                         style="background-color: #DF655C; box-shadow: 0 0 3px #820B0B;">
+                                        <i class="fa fa-exclamation-triangle m-r-5"></i>No broadcast message.
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <div ng-show="hasBroadCast && AuthToBroadCast == 1" class="lv-footer ms-reply animated zoomIn"
+                         disable-animate>
+                        <!--enter-submit="sendBroadCast(txtBroadCastMessage);"-->
+                        <textarea placeholder="Message...."
+                                  auto-grow
+                                  style="height: 40px; color: black; font-size: 15px; line-height: 1.05;"
+                                  id="txtBroadCastMessage"
+                                  ng-model="txtBroadCastMessage">
+                        </textarea>
+
+                        <!--<span style="position: absolute;top: 78%; right: 65px;">{{txtBroadCastMessage.length || 0}}/220</span>-->
+
+                        <button style="background-color: {{broadCastSelectItem.BroadCast_Color}};  transition: .4s ease-in-out;"
+                                ng-click="sendBroadCast(txtBroadCastMessage);">
+                            <img src="{{imgPath}}" style="height: 30px; width: 35px; margin-bottom: 1px;">
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </script>
+
+</div>
+
+

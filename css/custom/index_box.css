@@ -1,0 +1,85 @@
+#inbox {
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    z-index: 1000;
+	cursor: pointer;
+}
+
+#inbox .badge {
+    position: absolute;
+    top: -3px;
+    right: -4px;
+}
+
+.open-inbox-area {
+    height: 38px;
+    width: 38px;
+    display: block;
+    background: #1ab394;
+    padding: 9px 8px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.inbox-container {
+    display: none;
+    position: fixed;
+    top: 75px;
+    left: 50px;
+    background: #fff;
+    border: 1px solid #e7eaec;
+    width: 350px;
+    height: 450px;
+    border-radius: 4px;
+}
+
+.inbox-container.active {
+    display: block;
+}
+
+.inbox-container .heading {
+    background: #2f4050;
+    padding: 8px 15px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.inbox-close {
+	cursor: pointer;
+}
+
+.inbox-container .content {
+    padding: 0px;
+    margin: 0px;
+}
+
+.inbox-container .content .list-group {
+	margin-bottom: 0px;
+}
+
+.content-icon {
+	font-size: 1.2em;
+    cursor: pointer;    
+}
+
+.name_ellipsis {
+    width: 140px;
+    max-width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.content-line {
+	height: 22px;
+	line-height: 22px !important;
+}
+
+.inbox-container .content .list-group-item:last-child {
+	border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.pa3 { padding: 0 3px; }

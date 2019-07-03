@@ -1,0 +1,75 @@
+html { 
+	height: 100%; 
+	width: 100%;
+}
+
+body {
+	background: #7f9b4e url(../../img/bg_theking.jpg) no-repeat center top;
+	/*background: #7f9b4e url(../../img/login_cover-04.jpg) no-repeat center top;*/
+    /*background: #7f9b4e url(../../img/Light-Blue-Wallpaper-43.jpg) no-repeat center top;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%; 
+	width: 100%;    
+}
+
+span, div, input, button { border-radius: 0px !important; }
+
+.container {
+	height: 100% !important; 
+	width: 100% !important;
+	padding: 0px;
+}
+
+#login_form {
+    color: #666;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    bottom: 0px;
+    
+}
+
+#login_form > header {  font-size: 1.5em; text-align: center;}
+
+#content_form > header { margin-left: -15px; }
+#content_form {
+	position: absolute;
+	bottom: 25%;
+}
+
+.input-group, input.form-control {
+	max-width: 240px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 10px;
+}
+
+#copyright {
+    text-align: center;
+}
+
+
+/* CSS Modify */
+#ProjectName > h2 {
+	color: #FFF;
+	/*color: #222;*/
+    /*text-shadow: -1px 0 #e2dcdc, 0 1px #e2dcdc, 1px 0 #e2dcdc, 0 -1px #e2dcdc;*/
+}
+
+
+#content_form > header, 
+#copyright > small {
+	/*color: #b5b5b5;*/
+	color: #FFF;
+}
+
+#btnLogin { color: #8a8e8b; }

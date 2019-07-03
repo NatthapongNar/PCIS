@@ -1,0 +1,1 @@
+﻿var dashboard = angular.module('pcisKpiDashboard', ["pcis-collection", "angular.filter"]);

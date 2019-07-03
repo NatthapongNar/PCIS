@@ -1,0 +1,91 @@
+﻿.logo
+{
+	margin:auto;
+	background: url("../gfx/logo.png") no-repeat;
+	width:280px;
+	height:100px;
+}
+
+.dashboard
+{
+    width: 600px;
+    margin: auto;
+    font-family: 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;
+}
+
+.dashboard .row .col1
+{
+    width: 40%;
+    height: 170px;
+    float: left;
+}
+
+.dashboard .row .col2
+{
+    width: 30%;
+    height: 175px;
+    float: left;
+    margin: -10px 0 0 0;
+}
+
+        
+.dashboard .row .col3
+{
+    width: 30%;
+    height: 175px;
+    float: right;
+    margin: -10px 0 0 0;
+}
+
+
+.dashboard .legend-row
+{
+    position: relative;
+    height: 17px;
+    width: 100%;
+}
+
+.dashboard .row::after .legend-row::after
+{
+    content: ' ';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.dashboard  .legend
+{
+    font-family: 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    margin-right: 3px;
+    z-index: 10;
+    float: left;
+    color: #43474b;
+}
+
+.dashboard .hr
+{
+    width: 100%;
+    height: 10px;
+    border-bottom: 1px solid #c0c0c0;
+    float: left;
+}
+
+.dashboard .text
+{
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-size: 11px;
+    color: #8e93a7;
+    margin-top: 20px;
+}
+
+.dashboard  .label-value
+{
+    font-family: 'Segoe UI Semibold', 'Helvetica Neue Medium', 'Segoe UI', 'Helvetica Neue', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 600;
+}

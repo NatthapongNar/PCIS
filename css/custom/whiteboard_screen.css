@@ -1,0 +1,38 @@
+span.pagingation_info {
+    font-size: 1em;
+    padding: 3px;
+    position: absolute;
+    top: 170px;
+    margin-left: 3px;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid red !important;
+}
+
+.ui-jqgrid tr.jqgrow td{
+    height: auto;
+    white-space: normal;
+    vertical-align: top !important;
+}
+
+table#grid_container > tbody td {
+    vertical-align: top !important;
+    text-align: center;
+}
+
+.chat-client .dropdown.open .dropdown-menu { z-index: 2000000; }  
+span.s-ico { display: none !important; }
+
+/** Overide MultiList Chat **/
+.chat-client .dropdown-menu:not([class*=bgm-]) > li > a {
+    padding-left: 25px !important;
+}
+
+.chat-modal .multiselect-container .checkbox .input-helper:after {
+    left: -20px !important;
+    top: -5px !important;
+}
+
+.chat-modal .multiselect-container .checkbox .input-helper:before, .radio .input-helper:before { border: 0 !important; }
+.kalendae.k-floating { left: 920px !important; }

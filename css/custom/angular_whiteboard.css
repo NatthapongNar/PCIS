@@ -1,0 +1,312 @@
+#grid_whiteboard th,
+#grid_whiteboard td {
+    font-size: 0.85em !important;
+}
+
+.number_length {
+	position: absolute; 
+	float: left; 
+	margin-top: 40px; 
+	font-size: 0.9em;
+}
+
+th[class*="sort"]:after { content: "" !important; }
+
+.progress_icon {
+	position: absolute; 
+	margin-top: 16.5%; 
+	margin-left: 43.35%;  
+	z-index: 2147483647;
+}
+
+.text-uppercase { text-transform: uppercase;  }
+.iconCursor { cursor: pointer; }
+.reactive { background-color: #DFF0D8 !important; }
+.retrieve { background-color: #f9e5e5 !important; }
+
+td.text-right.ng-binding.fg-reactive.fg-white { color: #DFF0D8 !important; }
+td.text-right.ng-binding.fg-retrieve.fg-white { color: #f9e5e5 !important; }
+
+.blackboard {
+	width: 100%; 
+	height: 1400px; 
+	position: absolute; 
+	background: #000; 
+	opacity: 0.2; 
+	margin-top: -100px;
+	z-index: 2147483647;
+}
+
+.sidenav {
+    width: 0px;
+    position: absolute;
+    background: #4a4c4e;
+    height: 1050px;
+    min-height: 700px;
+    padding-top: 0px;
+    margin-top: -12px;
+    z-index: 1;
+    transition: .8s;
+}
+
+.sidenav > .content {
+    padding: 10px 5px 5px 5px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    min-height: 35px;
+}
+
+.sidenav > .content.open { 
+	left: 0px; 
+	opacity: 1;  
+    -webkit-transition : all 1.5s ease-in;
+    -moz-transition : all 1.5s ease-in;
+    -o-transition : all 1.5s ease-in;
+    transition : all 1.5s ease-in
+}
+
+.sidenav > .content.close { 
+	left: -400px; 
+	 opacity: 0; 
+	 /*
+	-webkit-transition : all .2s ease-out;
+    -moz-transition : all .2s ease-out;
+    -o-transition : all .2s ease-out;
+    transition : all .2s ease-out;
+    */
+}
+
+.sidenav > .content > .label {
+	width: 150px;
+	float: left;
+	padding: 5px;
+	color: #FFF;
+	background: transparent;
+	min-height: 30px;
+}
+
+.sidenav > .content > .field {
+	float: left;
+	width: 215px;
+	padding: 5px;
+	line-height: 90%;
+	margin-left: 5px;
+	min-height: 30px;
+}
+
+.sidenav > .content > .field > .input-control.text {
+	background-color: transparent !important;
+}
+
+.sidenav > .content > .label.header,
+.sidenav > .content > .field.header { 
+	background: #FFFFFF;
+	font-size: 14px !important;
+} 
+
+.sidenav .closebtn {
+    position: absolute;
+    top: -11px;
+    right: 5px;
+    color: #FFFFFF;
+    font-size: 36px;
+}
+
+#sidebar_icon {
+	height: 40px;
+	padding: 5px;
+	z-index: 999; 
+	transform: rotate(0deg); 
+	transform-origin: 50% 50% 0px;
+	background: #4a4c4e;
+	cursor: pointer;
+	margin-top: -12px;
+}
+
+#sidebar_icon.openside { 
+	transform: rotate(180deg); 
+	margin-left: -40px;
+    transition: margin-left .8s;
+}
+
+#sidebar_icon.closeside { 
+	transform: rotate(0deg); 
+	margin-left: 0px;
+    transition: margin-left .8s;
+}
+
+.field_limitText { 
+	min-height: 30px;
+	max-height: 30px;
+	min-width: 215px;
+	font-size: 12px !important;
+}
+
+.OptionTool {
+    float: right;
+    height: 42px;
+    line-height: 2.1;
+   
+}
+
+.OptionTool button {
+	background-color: #FFF;
+	border: 1px solid #D1D1D1;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.OptionTool button > i  { 
+    color: #555;	
+    padding: 7px 0px;
+    font-size: 1.4em;
+}
+
+.OptionTool button:hover { background-color: #f5f2d4; }
+
+#grid_main { transition: margin-left .8s; }
+
+@media screen and (max-height: 450px) {
+    .sidenav { padding-top: 15px; }
+}
+
+
+/* Modify General */
+#mslist_mastermultiemployee { right: 0 !important; }
+.ms-drop ul > li label:not(.optgroup) input[data-group^='group'] { margin-left: 15px !important; }
+
+#ms_spanmasterproduct_type.ms-choice, #ms_spanmasterproducts.ms-choice,
+#ms_spanmasterdecisionstate.ms-choice, #ms_spanmasterdecisionreason.ms-choice { max-height: 30px; }
+
+#ms_spanmasterproduct_type.ms-choice > div, #ms_spanmasterproducts.ms-choice > div,
+#ms_spanmasterdecisionstate.ms-choice > div, #ms_spanmasterdecisionreason.ms-choice > div { top: 3px; }
+h3.webui-popover-title {
+    padding-left: 10px;
+    font-size: 1.2em;
+}
+
+/* Modify Button */
+button.button { margin-top: -10px; }
+button.button > .icon_box { float: left; }
+button.button > .text_box { float: left; min-width: auto; }
+button > .text_box { 
+	font-size: 0.8em;
+	text-transform: capitalize;
+}
+
+/* Modify Modal */
+/* .modal-fullscreen size: we use Bootstrap media query breakpoints */	
+.mb-overflow-hide { overflow: hidden; }
+.mb-overflow-show { overflow: visible; }
+
+.modal-header {
+	max-height: 72px; 
+}
+
+.modal-icon {
+	font-size: 2em; 
+	margin-top: -5px;
+	margin-right: 15px;
+	padding-top: 5px;
+	cursor: pointer;
+}
+
+.modal-content {
+   top: 0px !important;
+   width: 100%;
+   margin: 0;
+   margin-right: auto;
+   margin-left: auto;
+   border-radius: 0px;
+}
+
+.modal-sm > .modal-content {
+	max-width: 600px;
+} 
+
+.modalEditMode {
+	top: 0;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+	position: absolute;    
+    z-index: 25000000;
+    transition: .5s;
+    background-color: white !important;
+}
+
+.file_container {
+	border: 1px dotted #81003C;
+	cursor: pointer;
+	width: 160px;
+	height: 200px;
+	padding: 10px 0;
+	background: rgba(0, 0, 0, 0.5);
+	display: inline-block;
+	float: left;
+}
+
+.file_container:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+
+.file_wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.file_wrapper > span {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    text-align: center;
+    left: 0;
+    padding: 20px 0;
+    color: #FFF;
+    transition: 0.5s ease-in-out;
+}
+
+.file_wrapper:hover > span { margin-top: -60px; }
+
+.file_container > .progress-bar {
+	top: 0;
+	position: absolute;
+	min-width: 158px;
+	max-width: 158px;
+}
+
+.thumbnail_file {
+	width: 100%;
+	height: 100%;
+}
+
+.divider_preview {
+    width: 100%;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+@media (min-width: 768px) {
+  .modal-fullscreen .modal-dialog { width: 95%; }
+}
+
+@media (min-width: 992px) {
+  .modal-fullscreen .modal-dialog { width: 95%; }
+}
+
+@media (min-width: 1200px) {
+  .modal-fullscreen .modal-dialog { width: 95%; }
+}
+
+@media only screen and (min-device-width : 1367px) {
+	#grid_whiteboard { min-width: 1422px; max-width: 1422px !important; }
+}
+
+@media only screen and (max-device-width : 1450px) {
+	#grid_whiteboard { min-width: 1422px; max-width: 1422px !important; }
+}
+
+@media only screen 
+and (min-device-width : 1200px) 
+and (max-device-width : 1366px) {
+	#grid_whiteboard { min-width: 1366px; max-width: 1366px !important; }
+}
