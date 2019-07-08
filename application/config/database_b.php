@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'TC001PCIS1U';
-$db['default']['username'] = 'sa';
-$db['default']['password'] = 'P@ssw0rd1234';
-$db['default']['database'] = 'PCIS';
-$db['default']['dbdriver'] = 'sqlsrv';
+$db['default']['hostname'] = '';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
+$db['default']['dbdriver'] = '';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
