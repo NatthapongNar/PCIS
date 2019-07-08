@@ -2269,7 +2269,7 @@ class Metro extends MY_Controller {
 			"ApprovedLoan"    		=> str_replace(',', '', $amountapproved),
 			"TermYear"        		=> $this->prepareInput($termyear),
 				
-			"PlanDrawdownDate"		=> $drawdown_plandate,
+			"PlanDrawdownDate"		=> ($pending_cancel_check == 1 || $pending_cancel_check == 'Y') ? null : $drawdown_plandate,
 			"PlanDateUnknown"		=> !empty($postpone_unknown) ? $postpone_unknown:NULL,
 			"DrawdownReservation"	=> $drawdown_booking,
 			
@@ -2347,9 +2347,10 @@ class Metro extends MY_Controller {
 		endif;
 		
 		// NEW STATEMENET 23 FEB 2019
-		if($pending_cancel_check == 1 || $pending_cancel_check == 'Y'){
+		if($pending_cancel_check == 1 || $pending_cancel_check == 'Y') {
 			
 			$this->dbmodel->exec('ApplicationPendingCancelLogs', $pending_cancel_arr, false, 'insert');
+			
 			
 			/* Action 
 			$this->dbmodel->exec("ActionNote", array(

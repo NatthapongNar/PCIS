@@ -1649,7 +1649,8 @@ if(!in_array($session_data['emp_id'], $this->config->item('Administrator')) || !
 		</div>
 	</a>
 	
-	<a href="<?php echo site_url('collection_control/getCollectionList');?>" target="_blank">
+	<!-- <?php echo site_url('collection_control/getCollectionList');?> -->
+	<a href="http://tc001pcis1p:8099/pcis/index.php/collection_control/getCollectionList" target="_blank">
 		
 		<div class="tile double double-vertical bg-darkCyan" style="position: absolute; right: -160px; margin-top: -10px;">
 			<div class="tile-content">

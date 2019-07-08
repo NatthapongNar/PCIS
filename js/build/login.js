@@ -160,36 +160,60 @@ pcisAuthen.factory("help", function($q, $http){
 							role: null
 						}	
 						
-						help.getNanoDataAuthenication(object_authen).then(function(resp) { 
-
-							if(resp.status == 200) {
-								var data = resp.data
-								objects.role = data.Role[0]
-							}
-							
-							if(objects) {
-								$.ajax({
-									 url: pathFixed + "authen/logged", 
-						             type: "POST",
-						             data: objects,
-						             dataType: "text",  
-						             cache: false,
-						             success: function(resp) {	
-						            	var data = JSON.parse(resp);
-						            	
-							            if(data.Deparment === 'LENDING')
-							            	window.location.href = pathFixed + 'metro';
-							            else 
-							            	window.location.href = pathFixed + 'module/drawdownTemplate';
-							           
-						             }, 
-						             complete: function() {
-						            	 help.callNotify('Login successfully.', 'success');
-						             }
-						        });
-							}
-									
-						});
+						// IF DOESN'T CONNECTION TO SERVICE API. IT'S PASSES LOGIN OF NANO
+//						if(help.getNanoDataAuthenication(object_authen).$$state.status == 0) {
+//							objects.role = [];
+//							$.ajax({
+//								 url: pathFixed + "authen/logged", 
+//					             type: "POST",
+//					             data: objects,
+//					             dataType: "text",  
+//					             cache: false,
+//					             success: function(resp) {	
+//					            	var data = JSON.parse(resp);
+//					            
+//						            if(data.Deparment === 'LENDING')
+//						            	window.location.href = pathFixed + 'metro';
+//						            else 
+//						            	window.location.href = pathFixed + 'module/drawdownTemplate';
+//						           
+//					             }, 
+//					             complete: function() {
+//					            	 help.callNotify('Login successfully.', 'success');
+//					             }
+//					        });
+//							
+//						} else {
+							help.getNanoDataAuthenication(object_authen).then(function(resp) { 
+								if(resp.status == 200) {
+									var data = resp.data
+									objects.role = data.Role[0]
+								}
+		
+								if(objects) {
+									$.ajax({
+										 url: pathFixed + "authen/logged", 
+							             type: "POST",
+							             data: objects,
+							             dataType: "text",  
+							             cache: false,
+							             success: function(resp) {	
+							            	var data = JSON.parse(resp);
+							            
+								            if(data.Deparment === 'LENDING')
+								            	window.location.href = pathFixed + 'metro';
+								            else 
+								            	window.location.href = pathFixed + 'module/drawdownTemplate';
+								           
+							             }, 
+							             complete: function() {
+							            	 help.callNotify('Login successfully.', 'success');
+							             }
+							        });
+								}
+			
+							});
+//						}
 							
 					} else {
 						help.callNotify(data.Detail)

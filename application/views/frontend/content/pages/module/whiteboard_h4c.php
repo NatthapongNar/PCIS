@@ -77,19 +77,23 @@
 <div class="progress blackboard"></div>
 
 <div id="dateonhand" style="display: none;">
+	<!-- 
 	<div style="background-color: #D1D1D1; border: 1px dotted red; padding: 2px; font-weight: bold; margin: 3px 0;">Plan A2CA (ปกติ)</div>	
 	<div style="background-color: #E3C800; border: 1px dotted red; padding: 2px; font-weight: bold; margin: 3px 0;">Plan A2CA (เลื่อนครั้งที่ 2)</div>
 	<div style="background-color: #f16464; color: #000; border: 1px dotted #000; padding: 2px; font-weight: bold; margin: 3px 0;">Plan A2CA (เลื่อนครั้งที่ 3 หรือมากกว่า)</div>
 	<div><i class="fa fa-circle fg-black"></i> HQ Received</div>
+	 -->
 	<div><i class="fa fa-circle fg-blue"></i> HO2CA</div>		
 	<div><i class="fa fa-circle fg-green"></i> A2CA</div>
 </div>
 
 <div id="status_detail" style="display: none;">
+	<!-- 
 	<div><i class="fa fa-circle" style="color: #4390DF;"></i> Score-Pass (สามารถทำ RM Way ได้)</div>
+	 -->
 	<div><i class="fa fa-circle" style="color: #199a11;"></i> อยู่ระหว่างการประเมิน</div>
 	<div><i class="fa fa-circle" style="color: #fa6800;"></i> CA รับเล่มประเมินแล้ว</div>
-	<div><i class="fa fa-circle" style="color: red;"></i> หนังสือรับรองกรรมสิทธิสิ่งปลูกสร้างไม่สมบูรณ์</div>
+	<!-- <div><i class="fa fa-circle" style="color: red;"></i> หนังสือรับรองกรรมสิทธิสิ่งปลูกสร้างไม่สมบูรณ์</div> -->
 </div>
 
 <div id="print_detail" style="display: none;">
@@ -322,10 +326,12 @@
 		<header class="nonprint marginTopEasing10 marginBottom10 text-center ">		
 			<h2 >H4C WHITEBOARD</h2>
 			<h4 class="text-center text-muted animated rubberBand"><?php echo date('d M Y'); ?></h4>
+			<!-- 
 			<div id="definded_status" class="row animated rubberBand print_hold">
 			    <div><span style="background: #c6eab6; padding: 0 10px; width: 100px; border: 1px dotted;">&nbsp;</span> Re-Activated</div>
 			    <div><span style="background: #f4c6c6; padding: 0 10px; width: 100px; border: 1px dotted;"></span>&nbsp;Retrieved</div>
 		    </div>
+		    -->
 		</header>
 		
 		<div id="panel_criteria" class="panel print_hold nonprint" data-role="panel" style="width: 634px; float: right; margin-bottom: 13px;">
@@ -408,7 +414,7 @@
                                 ng-model="filter.areas"
                                 config="multipleConfig"
                                 data="masterdata.area"
-                                ng-options="option.AreaID as option.Info for option in masterdata.area" 
+                                ng-options="option.AreaID as option.Info for option in masterdata.area | orderBy: ['RegionID','AreaCode']" 
                                 ng-disabled="!areas_filter"
                                 ng-change="onAreaChange()">
                         </select>
@@ -421,7 +427,7 @@
                                 ng-model="filter.branch"
                                 config="multipleConfig"
                                 data="masterdata.branch"
-                                ng-options="option.BranchCode as option.BranchName for option in masterdata.branch | filter: { BranchDigit: '!HQ' }"
+                                ng-options="option.BranchCode as option.BranchName for option in masterdata.branch | orderBy: ['AreaID','BranchCode'] | filter: { BranchDigit: '!HQ'}"
                                 ng-disabled="!branch_filter"
                                 ng-change="onBranchChange()"></select>
 					</div>
@@ -509,14 +515,14 @@
 				        <th colspan="3" class="text-center">NAME</th>
 				        <th colspan="3" class="text-center">LOAN REQUEST</th>
 				        <th colspan="2" class="text-center">APP TO CA</th>
-				        <th colspan="4" class="text-center">STATUS ( P / A / R / C / CR / PC)</th>
-				        <th colspan="5" class="text-center">DRAWDOWN DATE</th>
-				        <th style="border-bottom: 0; vertical-align: middle; min-width: 200px; max-width: 200px;"></th>
+				        <th colspan="4" class="text-center">STATUS ( P / A / R / C / DX / SC)</th>
+				        <th colspan="4" class="text-center">DRAWDOWN DATE</th>
+				        <th style="border-bottom: 0; vertical-align: middle; min-width: 220px; max-width: 220px;"></th>
 				    </tr>
 				    <tr class="brands">
 				        <th style="text-align: center; min-width: 40px !important; vertical-align: middle;">START</th>
 				        <th style="text-align: center; min-width: 10px !important; vertical-align: middle;"><abbr title="DAY" style="border:none;"><i class="fa fa-flag-o print_hold nonprint"></i></abbr></th>
-				        <th style="text-align: center; min-width: 90px !important; vertical-align: middle;">CUSTOMER</th>
+				        <th style="text-align: center; min-width: 110px !important; vertical-align: middle;">CUSTOMER</th>
 				        <th style="text-align: center; min-width: 80px !important; vertical-align: middle;">RM</th>
 				        <th style="text-align: center; min-width: 30px !important; vertical-align: middle;"><abbr title="Branch" style="border:none;">TEAM</abbr></th>
 				        <th style="text-align: center; min-width: 50px !important; vertical-align: middle;"><abbr title="Product Program" style="border:none;">PG</abbr></th>
@@ -532,11 +538,11 @@
 				        <th style="text-align: center; min-width: 40px !important; vertical-align: middle;">DATE</th>
 				        <th style="text-align: center; min-width: 50px !important; vertical-align: middle;"><abbr title="Amount" style="border:none;">AMT</abbr></th>
 				        <th style="text-align: center; min-width: 10px !important; vertical-align: middle;"><abbr title="DAY" style="border:none;"><i class="fa fa-flag-o print_hold nonprint"></i></abbr></th>
-				        <th colspan="2" style="text-align: center; min-width: 50px !important; vertical-align: middle;">PLAN</th>
+				        <th style="text-align: center; min-width: 40px !important; vertical-align: middle;">PLAN</th>
 				        <th style="text-align: center; min-width: 65px !important; vertical-align: middle;">ACTUAL</th>
 				        <th style="text-align: center; min-width: 50px !important; vertical-align: middle;"><abbr title="Amount" style="border:none;">AMT</abbr></th>
 				        <th style="text-align: center; min-width: 10px !important; vertical-align: middle;"><abbr title="DAY" style="border:none;"><i class="fa fa-flag-o print_hold nonprint"></i></abbr></th>
-				        <th style="vertical-align: middle; border-right: 0px; min-width: 200px">ACTION NOTE</th>       
+				        <th style="vertical-align: middle; border-right: 0px; min-width: 220px">ACTION NOTE</th>       
 				    </tr>
 			    </thead>
 				<tbody>
@@ -544,7 +550,7 @@
 						<td>{{ item.StartDate }}</td>
 						<td class="text-center"><span compile-html="item.OverallDay"></span></td>
 						<td>
-							{{ item.BorrowerName | setWordwise:true:15:'...'  }}
+							{{ item.BorrowerName  }}
 							<div class="printonly" ng-class="{ 'nonprint' : AppNo }">{{item.AppNo}}</div>
 						</td>
 						<td>{{ item.RMName | setWordwise:true:12:'...' }}</td>
@@ -567,7 +573,6 @@
 						<td ng-if="item.Status == 'CR'">{{ item.CAReturnDateLog }}</td>
 						<td class="text-right" ng-class="{ 'fg-retrieve': item.ResetState == 'RET', 'fg-reactive': item.ResetState == 'REA', 'fg-white': item.ApprovedLoan == 0 }">{{ item.ApprovedLoan | number: 0 }}</td>
 						<td class="text-center"><span ng-show="item.LatestAppProgress == 'A2CA' || item.Status == 'CR'" compile-html="item.CAOnhandCount"></span></td>
-						<td style="max-width: 10px;"><i class="fa fa-calendar-plus-o pointer" aria-hidden="true"></i></td>
 						<td class="text-center">
 							<span ng-if="!item.PlanDateUnknown">{{ item.PlanDrawdownDate }}</span>
 							<span ng-if="item.PlanDateUnknown">00/00/0000</span>
@@ -598,7 +603,6 @@
 						<td></td>
 						<td></td>
 						<td class="text-right"></td>
-						<td></td>
 						<td></td>	
 						<td></td>
 						<td></td>	
@@ -616,7 +620,6 @@
 						<td></td>
 						<td></td>
 						<td class="text-right">{{ grandTotal.approvedloan_footer | number: 0 }}</td>
-						<td></td>
 						<td></td>	
 						<td></td>
 						<td></td>	
@@ -761,6 +764,27 @@
 		<i class="fa fa-clipboard modal-icon fg-steel" ng-click="selectTextAll('parent_noteItemList')" style="font-size: 1em; opacity: 0.8;"></i>
 	</div>
 	</div>
+	</script>
+	
+	<script id="modalPlanDrawdown.html" type="text/ng-template">
+	<div class="modal-header fixed text-uppercase bg-darkCyan fg-white" style="padding-right: 5px !important;">
+		PLAN DRAWDOWN INFORMATION
+	</div>
+	<div class="modal-body paddingLeft25 paddingRight25">
+		<div class="nonprint">
+			<div class="input-control text field_limitText margin_none fg-black">
+				<label>PLAN DRAWDOWN</label<>
+				<input id="plandrawdown_reservation" name="plandrawdown_reservation" ng-model="dataForm.plandrawdown" input-daterange-enable type="text">
+			</div>
+			<div class="input-control checkbox span6 text-left" style="margin-top: 15px;">
+		    	<label>
+		    		<input id="drawdown_reservation" name="reservation_cm" ng-model="dataForm.drawdown_reservation" type="checkbox" disabled="!dataForm.plandrawdown">
+		    		<span class="check" style="margin: 0px;"></span> จอง Drawdown
+		    	</label>
+		   	</div>
+		</div>
+	</div>
+	<div class="modal-footer"></div>
 	</script>
 	
 	<script type="text/javascript">

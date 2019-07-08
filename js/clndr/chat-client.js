@@ -880,6 +880,7 @@ angular.module("chat-client", [
                     message: null,
                     sendtime: null
                 };
+                scope.whiteboardUrl = "http://" + window.location.hostname + "/pcis/index.php/report/whiteboardH4C";
 
                 function getLinkCalendar(newEmp) {
                     var uri = "";

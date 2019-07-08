@@ -29,7 +29,7 @@
 	<script src="<?php echo base_url('js/angular/angular-filter.min.js'); ?>"></script>
 	<script src="<?php echo base_url('js/angular/ui-bootstrap-tpls-1.1.2.min.js'); ?>"></script>
 	<script src="<?php echo base_url('js/build/collection/collection_script.js'); ?>"></script>	
-	<script src="<?php echo base_url('js/build/login.js?v=002'); ?>"></script>	
+	<script src="<?php echo base_url('js/build/login.js?v=003'); ?>"></script>	
 	<!-- END INCLUDE CHAT SCRIPT -->
 	<script>engine=null,"Microsoft Internet Explorer"==window.navigator.appName&&(document.documentMode?engine=document.documentMode:(engine=7,document.compatMode&&"CSS1Compat"==document.compatMode&&(engine=9))),$(function(){$("#ProjectName").addClass("animated pulse"),$("#icon-login").addClass("animated rotateIn")});</script>
 </head>

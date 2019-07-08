@@ -3467,7 +3467,6 @@ collection_module.factory("help",function($q, $http) {
 .controller("ctrlWhiteboardH4C", function($scope, $filter, help, Notification, $uibModal, $log, $compile, $q, socket) {
 	
 	var _ = window._;
-    socket.on("chat:toTyping", function (data) { console.log(data); });
     
     $('title').text('Whiteboard H4C');
 	
@@ -4506,6 +4505,21 @@ collection_module.factory("help",function($q, $http) {
 	    });
 	 
 	};
+	
+	$scope.openPlanDrawdownModal = function(doc_id, objects) {
+		
+		var modalInstance = $uibModal.open({
+	        animation: true,
+	        templateUrl: 'modalPlanDrawdown.html',
+	        controller: 'ModalPlanDrawdownH4C',
+	        size: 'sm',
+	        backdrop: 'static',
+	        keyboard: true,
+	        windowClass: 'modal-fullscreen animated zoomIn',
+	        resolve: { items: function () { return { 'DocID': doc_id, 'Data': objects }; } }
+	    });
+	 
+	};
 
 	$scope.opensidebar = function() {
 		var talbe_height = $('#grid_whiteboard').height();
@@ -5363,4 +5377,14 @@ collection_module.factory("help",function($q, $http) {
 	
     }
 		
+})
+.controller('ModalPlanDrawdownH4C', function($scope,$filter, help, $uibModalInstance, items) {
+	
+	$scope.dataForm = {
+		plandrawdown: null,
+		drawdown_reservation: null
+	};
+	
+	
+	console.log(items);
 });
